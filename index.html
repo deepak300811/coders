@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corporate Coders</title>
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <p>First Task</p>
+
+    <form >
+
+        <div class="load-input">
+            <label for="servers">Enter number of servers</label>
+            <input
+              type="number"
+              name="servers"
+              id="servers"
+              placeholder="enter no. of servers"
+            />
+          </div>
+          <div class="load-input">
+            <label for="inputEfficienty"
+              >Enter space separated server load every minute</label
+            >
+            <input
+              type="text"
+              name="inputEfficienty"
+              id="inputEfficienty"
+              placeholder="enter text"
+            />
+            <button id="btnRes" class="btn"> Find Result</button>
+    </form>
+
+    <p id="Result"> </p>
+
+    
+
+    </div>
+
+<script>
+    function calculate(noServers,inputUsage){
+    var array=inputUsage.split(' ');
+    var tempNoServers=noServers;
+    var tempArr=array.map(function(item){
+        if(item<50){
+            tempNoServers=Math.floor(tempNoServers/2)
+            
+        }
+        else{
+            tempNoServers=2*tempNoServers+1
+
+        }
+        return tempNoServers
+        
+    })
+    console.log(tempArr)
+    if( tempArr[4]!==undefined && tempArr[4]!==null){
+        document.getElementById("Result").innerHTML=tempArr[4];
+    };
+
+    }
+
+    document.getElementById("btnRes").addEventListener("click",function(event){
+        event.preventDefault()
+        console.log(document.getElementById("servers").value )
+        console.log(document.getElementById("inputEfficienty").value)
+      calculate(document.getElementById("servers").value,document.getElementById("inputEfficienty").value)
+    })
+</script>
+
+  </body>
+</html>

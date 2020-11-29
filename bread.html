@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corporate Coders</title>
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <p>Second Task</p>
+
+    <form >
+
+        <div class="load-input">
+            <label for="material">Enter material available (no. of breads, no. of vadas, no. of samosas)</label>
+            <input
+              type="text"
+              name="material"
+              id="material"
+              placeholder="Enter material"
+            />
+          </div>
+          <div class="load-input">
+            <label for="rates"
+              >Enter Rates</label
+            >
+            <input
+              type="text"
+              name="rates"
+              id="rates"
+              placeholder="enter rates"
+            />
+            <button id="btnRes" class="btn"> Find Result</button>
+    </form>
+
+    <p > <span id="Result"></span>  <span>(Maximum profit possible will be)</span> </p> 
+
+    </div>
+
+<script>
+    function calculate(material,rates){
+    var materialsArr=material.split(' ');
+    var ratesArr=rates.split(' ');
+    materialsArr=materialsArr.map(function(item){
+        return parseInt(item.trim())
+    })
+    ratesArr=ratesArr.map(function(item){
+        return parseInt(item.trim())
+    })
+
+        var noOfBeard=materialsArr[0]
+        var noOfVada=materialsArr[1]
+        var noOfSamosa=materialsArr[2]
+        var ratesVada=ratesArr[0]
+        var ratesSamosa=ratesArr[1]
+        var rates=[];
+        var possiblePieces=Math.floor(noOfBeard/2)
+        if(ratesVada>ratesSamosa){
+        if(noOfVada<=possiblePieces){
+        var finalRate=ratesVada*noOfVada
+        if(Math.floor(possiblePieces-noOfVada/2)>=2){
+            finalRate=finalRate+ratesSamosa* Math.floor(possiblePieces-noOfVada/2);
+        }
+        }
+        }
+        rates[0]=finalRate ? finalRate:0;
+
+
+if(ratesVada<=ratesSamosa){
+if(noOfSamosa<=possiblePieces){
+var finalRate=ratesSamosa*noOfSamosa
+if(possiblePieces-noOfSamosa>0){
+    finalRate=finalRate+ratesVada* (possiblePieces-noOfSamosa);
+}
+}
+}
+rates[1]=finalRate ? finalRate:0;
+
+console.log(rates)
+    console.log(materialsArr)
+    console.log(ratesArr)
+
+document.getElementById("Result").innerHTML=Math.max(...rates)
+    }
+
+    document.getElementById("btnRes").addEventListener("click",function(event){
+        event.preventDefault()
+        console.log(document.getElementById("material").value )
+        console.log(document.getElementById("rates").value)
+      calculate(document.getElementById("material").value,document.getElementById("rates").value)
+    })
+</script>
+
+  </body>
+</html>
